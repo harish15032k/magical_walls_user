@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
-import 'package:magical_walls_user/presentation/widgets/common_boxes.dart';
+import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 import '../../../widgets/common_search.dart';
 
 class HomeScreen extends StatefulWidget {

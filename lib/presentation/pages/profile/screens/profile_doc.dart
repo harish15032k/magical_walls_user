@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
+import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 
 class DocumentsScreen extends StatelessWidget {
   const DocumentsScreen({super.key});
@@ -82,25 +83,7 @@ class DocumentsScreen extends StatelessWidget {
               ),
             ),
             if (isVerified)
-              Container(
-                decoration: BoxDecoration(
-                  color: CommonColors.green.withAlpha(30),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/tick.png', width: 12),
-                    const SizedBox(width: 3),
-                    Text(
-                      "Verified",
-                      style: CommonTextStyles.semiBold12.copyWith(color: CommonColors.green),
-                    ),
-                  ],
-                ),
-              ),
+             CommonWidgets.VerifiedContainer(),
           ],
         ),
         const SizedBox(height: 8),

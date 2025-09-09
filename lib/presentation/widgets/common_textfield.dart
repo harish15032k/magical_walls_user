@@ -5,7 +5,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text.dart';
 
 class CommonTextField extends StatelessWidget {
-  final String label;
+  final String? label;
   final bool isRequired;
   final String hintText;
   final TextEditingController? controller;
@@ -15,10 +15,11 @@ class CommonTextField extends StatelessWidget {
   final int? maxLength;
   final bool readonly;
   final VoidCallback? ontap;
+  bool? islableneed ;
 
-  const CommonTextField({
+   CommonTextField({
     super.key,
-    required this.label,
+     this.label,
     this.isRequired = false,
     required this.hintText,
     this.controller,
@@ -28,6 +29,7 @@ class CommonTextField extends StatelessWidget {
     this.maxLength,
     this.readonly = false,
     this.ontap,
+    this.islableneed=true
   });
 
   @override
@@ -38,13 +40,15 @@ class CommonTextField extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if(islableneed!)
             Text(
-              label,
+              label!,
               style: CommonTextStyles.regular16.copyWith(
                 color: CommonColors.secondary,
               ),
             ),
             if (isRequired) ...[
+
               const SizedBox(width: 2),
               const Padding(
                 padding: EdgeInsets.only(top: 1),
@@ -53,6 +57,7 @@ class CommonTextField extends StatelessWidget {
             ],
           ],
         ),
+        if(islableneed!)
         const SizedBox(height: 8),
         TextField(
           style: CommonTextStyles.regular16,

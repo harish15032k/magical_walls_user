@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
-import 'package:magical_walls_user/presentation/widgets/common_boxes.dart';
+import 'package:magical_walls_user/presentation/pages/categories/view_detail.dart';
+import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
-
 import '../../../core/constants/app_text.dart';
 
 class SubCategories extends StatelessWidget {
@@ -55,17 +55,22 @@ class SubCategories extends StatelessWidget {
                 itemCount: CommonWidgets.popularServices.length,
                 itemBuilder: (context, index) {
                   final data = CommonWidgets.popularServices[index];
-                  return CommonWidgets.PopularBox(
-                    image: data["image"]!,
-                    title: data["title"]!,
-                    price: data["price"]!,
-                    rating: data["rating"]!,
-                    reviews: data["reviews"]!,
+                  return GestureDetector(
+                    onTap: (){
+                      Get.to(SubCategoriesViewDetail(),transition: Transition.zoom);
+                    },
+                    child: CommonWidgets.PopularBox(
+                      image: data["image"]!,
+                      title: data["title"]!,
+                      price: data["price"]!,
+                      rating: data["rating"]!,
+                      reviews: data["reviews"]!,
 
-                    showAddButton: true,
-                    batchColor: CommonColors.blue,
-                    batchName: "Offer",
-                    batchImage: 'assets/images/star.png',
+                      showAddButton: true,
+                      batchColor: data['batchColor'],
+                      batchName: data['batchName'],
+                      batchImage: data['batchImage'],
+                    ),
                   );
                 },
               ),

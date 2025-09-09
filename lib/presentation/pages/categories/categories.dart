@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/presentation/pages/categories/sub_categories.dart';
-import 'package:magical_walls_user/presentation/widgets/common_boxes.dart';
+import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 
 import '../../../core/constants/app_text.dart';
 
