@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
+import 'package:magical_walls_user/presentation/pages/Home/screens/search_screen.dart';
 import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 import '../../../widgets/common_search.dart';
 
@@ -78,7 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: CommonTextStyles.regular16,
               ),
               SizedBox(height: 12),
-              CommonSearch(hintText: "E.g. AC Repair, Home Painting"),
+
+
+               CommonSearch(hintText: "E.g. AC Repair, Home Painting",readonly: true,ontap: (){
+                 Get.to(()=>Search(),transition: Transition.downToUp);
+               },),
               SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
-import 'package:magical_walls_user/presentation/pages/Home/screens/markas_completed_screen.dart';
 
 import '../pages/Home/screens/view_summary.dart';
 import 'common_button.dart';
@@ -43,18 +42,44 @@ class CommonBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            color: CommonColors.purple.withAlpha(30),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(
-                '#$jobId',
-                style: CommonTextStyles.regular12.copyWith(
-                  color: CommonColors.purple,
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            subtitle: Text(
+              '₹1499',
+              style: CommonTextStyles.regular18.copyWith(
+                color: CommonColors.primaryColor,
+              ),
+            ),
+            trailing:    Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: CommonColors.green.withAlpha(30),),
+
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: Text(
+                  'Confirmed',
+                  style: CommonTextStyles.medium12.copyWith(
+                    color: CommonColors.green,
+                  ),
                 ),
               ),
             ),
+            leading: Container(
+              width: 73,
+              height: 49,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/ac.png'),
+                ),
+              ),
+            ),
+            title: Text(
+              jobType,
+              style: CommonTextStyles.medium18.copyWith(
+                color: CommonColors.black,
+              ),
+            ),
           ),
+
           const SizedBox(height: 5),
           Text(
             jobType,
@@ -119,9 +144,9 @@ class CommonBox extends StatelessWidget {
           const SizedBox(height: 12),
           (tab == 'ongoing' || tab == 'completed')
               ? CommonButton(
-            onTap: (){
-              tab=='ongoing'?Get.to(()=>MarkAsCompleted()):Get.to(()=>CompletedJobScreen());
-            },
+                  onTap: () {
+                    // tab=='ongoing'?Get.to(()=>MarkAsCompleted()):Get.to(()=>CompletedJobScreen());
+                  },
                   backgroundColor: CommonColors.primaryColor,
                   textColor: CommonColors.white,
                   text: tab == 'ongoing' ? "Mark as Completed" : "View Summary",

@@ -15,7 +15,7 @@ class CommonTextField extends StatelessWidget {
   final int? maxLength;
   final bool readonly;
   final VoidCallback? ontap;
-  bool? islableneed ;
+final  bool? islableneed ;
 
    CommonTextField({
     super.key,

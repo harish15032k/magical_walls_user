@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_text.dart';
 import '../../../widgets/common_button.dart';
 import '../../../widgets/common_widgets.dart';
+import '../../profile/screens/add_address.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -34,7 +35,8 @@ class _CartScreenState extends State<CartScreen> {
     return List.generate(30, (index) {
       final date = now.add(Duration(days: index));
       final weekday = _getWeekday(date.weekday);
-      return "$weekday\n ${date.day}";
+      print("weekday ${weekday}");
+      return "$weekday\n  ${date.day}";
     });
   }
 
@@ -201,7 +203,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             const SizedBox(height: 12),
             GestureDetector(
-              onTap: () {},
+              onTap: () {Get.to(()=> AddAddress(),transition: Transition.rightToLeft);},
               child: Text(
                 "Add New Address",
                 style: CommonTextStyles.semiBold14.copyWith(

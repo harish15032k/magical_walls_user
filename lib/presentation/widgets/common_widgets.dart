@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:magical_walls_user/presentation/pages/Home/Controller/home_controller.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text.dart';
+import 'common_button.dart';
 
 class CommonWidgets {
   static Widget serviceBox({
@@ -269,7 +272,162 @@ class CommonWidgets {
       },
     );
   }
-
+  static Future ShowBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: CommonColors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.6,
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Filter by:",
+                  style: CommonTextStyles.regular14.copyWith(
+                    color: CommonColors.secondary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Price Range",
+                      style: CommonTextStyles.regular16.copyWith(
+                        color: CommonColors.black,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        HomeController.to.resetSection('price');
+                      },
+                      child: Text(
+                        "Reset",
+                        style: CommonTextStyles.regular16.copyWith(
+                          color: CommonColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 12,
+                  children: const [
+                    CommonFilterChip(label: "Below ₹200", section: 'price'),
+                    CommonFilterChip(label: "₹200 – ₹500", section: 'price'),
+                    CommonFilterChip(label: "₹500 – ₹1000", section: 'price'),
+                    CommonFilterChip(label: "Above ₹1000", section: 'price'),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Customer Ratings",
+                      style: CommonTextStyles.regular16.copyWith(
+                        color: CommonColors.black,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        HomeController.to.resetSection('rating');
+                      },
+                      child: Text(
+                        "Reset",
+                        style: CommonTextStyles.regular16.copyWith(
+                          color: CommonColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 12,
+                  children: [
+                    CommonFilterChip(
+                      label: "4.5 ★ and above",
+                      section: 'rating',
+                      onTap: () {},
+                    ),
+                    CommonFilterChip(label: "4.0 ★ – 4.5 ★", section: 'rating'),
+                    CommonFilterChip(label: "3.5 ★ – 4.0 ★", section: 'rating'),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Popularity",
+                      style: CommonTextStyles.regular16.copyWith(
+                        color: CommonColors.black,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        HomeController.to.resetSection('popularity');
+                      },
+                      child: Text(
+                        "Reset",
+                        style: CommonTextStyles.regular16.copyWith(
+                          color: CommonColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 12,
+                  children: const [
+                    CommonFilterChip(label: "Most Popular", section: 'popularity'),
+                    CommonFilterChip(label: "High Review Count", section: 'popularity'),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CommonButton(
+                        text: 'Reset All',
+                        borderColor: CommonColors.purple,
+                        textColor: CommonColors.purple,
+                        onTap: () {
+                          HomeController.to.resetAllFilters();
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 15),
+                    Expanded(
+                      child: CommonButton(
+                        text: 'Apply Filter',
+                        backgroundColor: CommonColors.primaryColor,
+                        textColor: CommonColors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
   static final List<Map<String, dynamic>> reviews = const [
     {
       "name": "Priya R",
@@ -457,3 +615,49 @@ class CommonWidgets {
     );
   }
 }
+class CommonFilterChip extends StatelessWidget {
+  final String label;
+  final String section;
+  final VoidCallback? onTap;
+
+  const CommonFilterChip({
+    super.key,
+    required this.label,
+    required this.section,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var controller = HomeController.to;
+
+    return Obx(() {
+      final selected = controller.isSelected(label, section);
+      return ChoiceChip(
+        label: Text(
+          label,
+          style: CommonTextStyles.regular14.copyWith(
+            color: CommonColors.black,
+          ),
+        ),
+        selected: selected,
+        onSelected: (value) {
+          controller.toggleFilter(label, section);
+          if (onTap != null) onTap!();
+        },
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+        selectedColor: CommonColors.primaryColor.withAlpha(20),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(
+            color: selected
+                ? CommonColors.primaryColor
+                : CommonColors.textFieldGrey,
+          ),
+        ),
+      );
+    });
+  }
+}
+

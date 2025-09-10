@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
-import 'package:magical_walls_user/presentation/pages/profile/screens/personal_info.dart';
-import 'package:magical_walls_user/presentation/pages/profile/screens/profile_bank.dart';
-import 'package:magical_walls_user/presentation/pages/profile/screens/profile_doc.dart';
+
 import 'package:magical_walls_user/presentation/pages/profile/screens/profile_edit.dart';
 import 'package:magical_walls_user/presentation/pages/profile/screens/profile_suppport.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
+
+import 'my_bookings.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -41,101 +41,104 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
+          children: [
+
+            ClipPath(
+              clipper: ProfileClipper(),
+              child: Container(
+                height: 180,
+                color: Colors.grey.shade200,
+              ),
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Profile", style: CommonTextStyles.medium20),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/images/man.png'),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Ashok Kumar", style: CommonTextStyles.medium22),
-                      Row(
-                        children: [
-                          Text(
-                            "Electrician",
-                            style: CommonTextStyles.regular14.copyWith(
-                              color: CommonColors.secondary,
+                  const SizedBox(height: 20),
+
+
+                  Center(
+                    child: Column(
+                      children: [
+                        Stack(
+                          alignment: Alignment.bottomRight,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 35),
+                              child: CircleAvatar(
+                                radius: 45,
+                                backgroundColor: CommonColors.primaryColor,
+                                child: Text(
+                                  "S",
+                                  style: CommonTextStyles.medium20.copyWith(
+                                    color: CommonColors.white,
+                                    fontSize: 30,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => ProfileEdit(), transition: Transition.rightToLeft);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: CommonColors.primaryColor),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
-                        child: Text(
-                          "Edit Profile",
-                          style: CommonTextStyles.medium14.copyWith(
-                            color: CommonColors.primaryColor,
-                          ),
+                            CircleAvatar(
+                              radius: 14,
+                              backgroundColor: CommonColors.textFieldGrey,
+                              child: Icon(Icons.edit, size: 14),
+                            ),
+                          ],
                         ),
-                      ),
+                        const SizedBox(height: 10),
+                        Text("Sankarapandian",
+                            style: CommonTextStyles.medium18),
+                        Text("+91 6381946117",
+                            style: CommonTextStyles.regular14),
+                      ],
                     ),
                   ),
+                  const SizedBox(height: 24),
+
+                  _buildMenuItem(
+                    iconPath: 'assets/images/calendar.png',
+                    title: "My Bookings",
+                    onTap: () {
+                      Get.to(() => MyBookings(),
+                          transition: Transition.rightToLeft);
+                    },
+                  ),
+                  _buildMenuItem(
+                    iconPath: 'assets/images/location.png',
+                    title: "Manage Address",
+                    onTap: () {},
+                  ),
+                  _buildMenuItem(
+                    iconPath: 'assets/images/star.png',
+                    title: "My Ratings",
+                    onTap: () {},
+                  ),
+                  _buildMenuItem(
+                    iconPath: 'assets/images/setting-2.png',
+                    title: "Settings",
+                    onTap: () {},
+                  ),
+                  _buildMenuItem(
+                    iconPath: 'assets/images/head.png',
+                    title: "Help & Support",
+                    onTap: () {
+                      Get.to(() => HelpAndSupportScreen(),
+                          transition: Transition.rightToLeft);
+                    },
+                  ),
                 ],
               ),
-              const SizedBox(height: 24),
-              _buildMenuItem(
-                iconPath: 'assets/images/calendar.png',
-                title: "Professional Info",
-                onTap: () {
-                  Get.to(() => PersonalInfo(), transition: Transition.rightToLeft);
-                },
-              ),
-              _buildMenuItem(
-                iconPath: 'assets/images/location.png',
-                title: "Documents",
-                onTap: () {
-                  Get.to(() => DocumentsScreen(), transition: Transition.rightToLeft);
-                },
-              ),
-              _buildMenuItem(
-                iconPath: 'assets/images/star.png',
-                title: "Bank Details",
-                onTap: () {
-                  Get.to(() => BankDetailsScreen(), transition: Transition.rightToLeft);
-                },
-              ),
-              _buildMenuItem(
-                iconPath: 'assets/images/head.png',
-                title: "Help & Support",
-                onTap: () {
-                  Get.to(() => HelpAndSupportScreen(), transition: Transition.rightToLeft);
-                },
-              ),
-              _buildAvailabilityItem(),
-              const SizedBox(height: 16),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
+
 
   Widget _buildMenuItem({
     required String iconPath,
@@ -167,49 +170,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildAvailabilityItem() {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isAvailable = !_isAvailable;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 3.0),
-        child: Row(
-          children: [
-            Image.asset(
-              'assets/images/notification.png',
-              width: 24,
-              height: 24,
-            ),
-            const SizedBox(width: 12),
-            Text("Availability", style: CommonTextStyles.regular16),
-            const Spacer(),
-            Transform.scale(
-              scale: 0.9,
-              child: Switch(
-                value: _isAvailable,
-                onChanged: (value) {
-                  setState(() {
-                    _isAvailable = value;
-                  });
-                },
-                activeColor: Colors.green,
-                inactiveThumbColor: Colors.grey,
-                inactiveTrackColor: Colors.grey[300],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+
 
   void _showLogoutPopup(BuildContext context) {
     showDialog(
       context: context,
-      barrierDismissible: false, // User must tap a button to dismiss
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
           insetPadding: EdgeInsets.fromLTRB(14, 6, 14, 6),
@@ -243,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     borderColor: CommonColors.purple,
                       textColor: CommonColors.purple,
                       onTap: () {
-                        Navigator.of(context).pop(); // Close the dialog
+                        Navigator.of(context).pop();
                       },
                     ),
                     SizedBox(width: 15,),
@@ -254,9 +220,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       backgroundColor: CommonColors.primaryColor,
                       textColor: CommonColors.white,
                       onTap: () {
-                        // Add logout logic here (e.g., clear session, navigate to login screen)
+
                         Navigator.of(context).pop();
-                        Get.offAllNamed('/login'); // Example navigation to login screen
+
                       },
                     ),
                   ],
@@ -268,4 +234,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+}
+class ProfileClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0, size.height - 40);
+
+
+    path.quadraticBezierTo(
+      size.width / 2, size.height,
+      size.width, size.height - 40,
+    );
+
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
