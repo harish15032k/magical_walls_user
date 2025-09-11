@@ -7,6 +7,7 @@ import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/presentation/pages/Home/screens/search_screen.dart';
 import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 import '../../../widgets/common_search.dart';
+import 'notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -71,7 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  Image.asset('assets/images/notification.png', width: 25),
+                  GestureDetector( onTap: (){
+                    Get.to(()=> NotificationScreen(),transition: Transition.rightToLeft);
+                  }, child: Image.asset('assets/images/notification.png', width: 25)),
                 ],
               ),
               SizedBox(height: 22),

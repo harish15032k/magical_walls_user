@@ -16,5 +16,7 @@ class CommonColors {
   static const Color blue = Color(0xFF0081E4);
   static const Color green = Color(0xFF30C400);
   static const Color service = Color(0xFFF8F2EF);
+  static const Color red = Color(0xFFCE1515);
+  static const Color yellow = Color(0xFFFFC107);
 
 }

@@ -9,7 +9,8 @@ import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 import '../../../widgets/common_textfield.dart';
 
 class AddAddress extends StatefulWidget {
-  const AddAddress({super.key});
+  final String? page;
+  const AddAddress({super.key,  this.page});
 
   @override
   State<AddAddress> createState() => _AddAddressState();
@@ -32,7 +33,7 @@ bool isTermsAccepted =false;
           bottom: MediaQuery.of(context).viewInsets.bottom + 40,
         ),
         child: CommonButton(
-          text: "Save Address",
+          text: widget.page=='add'?"Save Address":'Save Changes',
           backgroundColor: CommonColors.primaryColor,
           textColor: CommonColors.white,
 
@@ -54,7 +55,7 @@ bool isTermsAccepted =false;
                     width: 25,
                   ),
                 ),
-                  const SizedBox(width: 8), Text("Add New Address", style: CommonTextStyles.medium20)],
+                  const SizedBox(width: 8), Text(widget.page=='add'?"Add New Address":"Edit Address", style: CommonTextStyles.medium20)],
               ),
               const SizedBox(height: 20),
 

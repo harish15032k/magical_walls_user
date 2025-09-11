@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
+import 'package:magical_walls_user/presentation/pages/profile/screens/my_ratings.dart';
 
 import 'package:magical_walls_user/presentation/pages/profile/screens/profile_edit.dart';
 import 'package:magical_walls_user/presentation/pages/profile/screens/profile_suppport.dart';
+import 'package:magical_walls_user/presentation/pages/profile/screens/settings.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 
+import 'add_address.dart';
+import 'manage_address.dart';
 import 'my_bookings.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -110,17 +114,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _buildMenuItem(
                     iconPath: 'assets/images/location.png',
                     title: "Manage Address",
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => ManageAddress(),
+                          transition: Transition.rightToLeft);
+                    },
+
+
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/star.png',
                     title: "My Ratings",
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => MyRatings(),
+                          transition: Transition.rightToLeft);
+                    },
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/setting-2.png',
                     title: "Settings",
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => SettingsScreen(),
+                          transition: Transition.rightToLeft);
+                    },
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/head.png',

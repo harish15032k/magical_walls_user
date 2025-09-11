@@ -5,6 +5,7 @@ import 'package:magical_walls_user/presentation/pages/Home/Controller/home_contr
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text.dart';
 import 'common_button.dart';
+import 'common_textfield.dart';
 
 class CommonWidgets {
   static Widget serviceBox({
@@ -614,6 +615,247 @@ class CommonWidgets {
       ),
     );
   }
+
+ static void showCancelPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: EdgeInsets.fromLTRB(14, 6, 14, 6),
+          backgroundColor: CommonColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Stack(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    const SizedBox(height: 10),
+                    Image.asset('assets/images/cancel.png',width: 55,),
+                    const SizedBox(height: 7),
+                    Text(
+                      "Cancel Booking ?",
+                      style: CommonTextStyles.medium18,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 15),
+                    Text(
+                      "Are you sure you want to cancel\n this booking?",
+                      style: CommonTextStyles.regular14.copyWith(color: CommonColors.secondary),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10,),
+                    CommonTextField(hintText: "",label: "Reason for Cancel",),
+                    const SizedBox(height: 24),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CommonButton(
+                          text: "Yes Cancel Booking",
+
+                          backgroundColor: CommonColors.primaryColor,
+                          textColor: CommonColors.white,
+                          onTap: () {
+
+                            Navigator.of(context).pop();
+
+                          },
+                        ),
+                        SizedBox(height: 15,),
+                        CommonButton(
+
+
+                          text: "No,Go Back",
+                          borderColor: CommonColors.purple,
+                          textColor: CommonColors.purple,
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+
+
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(top: 8,right: 8,width: 20, child: InkWell(onTap: (){
+                Get.back();
+              }, child: Image.asset('assets/images/close-circle.png')),)
+            ],
+          ),
+        );
+      },
+    );
+  }
+ static void showRatePopup(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: EdgeInsets.fromLTRB(14, 6, 14, 6),
+          backgroundColor: CommonColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 15,),
+
+                    Text(
+                      "Rate & Review",
+                      style: CommonTextStyles.medium18,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(8,0,8,8),
+                      decoration: BoxDecoration(
+                        color: CommonColors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: CommonColors.textFieldGrey, width: 1.5),
+                      ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            subtitle: Text(
+                              '₹1499',
+                              style: CommonTextStyles.regular18.copyWith(
+                                color: CommonColors.primaryColor,
+                              ),
+                            ),
+
+                            title: Text(
+                              "Full Home Painting",
+                              style: CommonTextStyles.regular18.copyWith(
+                                color: CommonColors.black,
+
+                              ),
+                            ),
+                            leading:  Container(
+                              width: 73,
+                              height: 49,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/ac.png'),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Text(
+                                    "Date of Service",
+                                    style: CommonTextStyles.regular14,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "25 July 10 AM - 12 PM",
+                                    style: CommonTextStyles.regular14.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Text(
+                                    "Technician Name",
+                                    style: CommonTextStyles.regular14,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "Ramesh Kumar",
+                                    style: CommonTextStyles.regular14.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+
+                    const SizedBox(height: 18),
+                    Text(
+                      "How was the service?",
+                      style: CommonTextStyles.regular14,
+                    ),
+                    const SizedBox(height: 7),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(
+                        5,
+                            (index) => Icon(
+                          Icons.star,
+                          color: index < 4 ? CommonColors.yellow : Colors.grey.withAlpha(70),
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 13),
+                    CommonTextField(
+                      hintText: "Very professional and quick service!",
+                      label: "Comment",
+                    ),
+                    const SizedBox(height: 24),
+                    Center(
+                      child: CommonButton(
+                        text: "Submit Rating",
+                        backgroundColor: CommonColors.primaryColor,
+                        textColor: CommonColors.white,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 8,
+                right: 8,
+                width: 20,
+                child: InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Image.asset('assets/images/close-circle.png'),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }
 class CommonFilterChip extends StatelessWidget {
   final String label;
@@ -659,5 +901,7 @@ class CommonFilterChip extends StatelessWidget {
       );
     });
   }
+
+
 }
 

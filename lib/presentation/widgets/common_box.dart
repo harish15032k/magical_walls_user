@@ -16,6 +16,7 @@ class CommonBox extends StatelessWidget {
   final String address;
   final VoidCallback? onAccept;
   final VoidCallback? onReject;
+  final VoidCallback? ontap;
 
   const CommonBox({
     super.key,
@@ -27,6 +28,7 @@ class CommonBox extends StatelessWidget {
     required this.address,
     this.onAccept,
     this.onReject,
+    this.ontap,
     this.tab,
   });
 
@@ -50,15 +52,30 @@ class CommonBox extends StatelessWidget {
                 color: CommonColors.primaryColor,
               ),
             ),
-            trailing:    Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: CommonColors.green.withAlpha(30),),
+            trailing: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: tab == 'upcoming'
+                    ? CommonColors.blue.withAlpha(30)
+                    : tab == 'completed'
+                    ? CommonColors.green.withAlpha(30)
+                    : CommonColors.red.withAlpha(30),
+              ),
 
               child: Padding(
-                padding: const EdgeInsets.all(6.0),
+                padding: const EdgeInsets.symmetric(horizontal: 6.0,vertical: 2),
                 child: Text(
-                  'Confirmed',
+                  tab == 'upcoming'
+                      ? 'Confirmed'
+                      : tab == 'completed'
+                      ? 'Completed'
+                      : 'Cancelled',
                   style: CommonTextStyles.medium12.copyWith(
-                    color: CommonColors.green,
+                    color: tab == 'upcoming'
+                        ? CommonColors.blue
+                        : tab == 'completed'
+                        ? CommonColors.green
+                        : CommonColors.red,
                   ),
                 ),
               ),
@@ -95,37 +112,12 @@ class CommonBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Customer',
-                    style: CommonTextStyles.regular14.copyWith(
-                      color: CommonColors.secondary,
-                    ),
-                  ),
-                  Text(customerName, style: CommonTextStyles.medium14),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Date',
+                    'Date & Time',
                     style: CommonTextStyles.regular14.copyWith(
                       color: CommonColors.secondary,
                     ),
                   ),
                   Text(date, style: CommonTextStyles.medium14),
-                ],
-              ),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Time Slot',
-                    style: CommonTextStyles.regular14.copyWith(
-                      color: CommonColors.secondary,
-                    ),
-                  ),
-                  Text(timeSlot, style: CommonTextStyles.regular14),
                 ],
               ),
             ],
@@ -134,48 +126,38 @@ class CommonBox extends StatelessWidget {
 
           const SizedBox(height: 8),
           Text(
-            'Address',
+           'Address',
             style: CommonTextStyles.regular14.copyWith(
               color: CommonColors.secondary,
             ),
           ),
           const SizedBox(height: 4),
-          Text(address, style: CommonTextStyles.medium14),
+          Text( address, style: CommonTextStyles.medium14),
           const SizedBox(height: 12),
-          (tab == 'ongoing' || tab == 'completed')
-              ? CommonButton(
-                  onTap: () {
-                    // tab=='ongoing'?Get.to(()=>MarkAsCompleted()):Get.to(()=>CompletedJobScreen());
-                  },
-                  backgroundColor: CommonColors.primaryColor,
-                  textColor: CommonColors.white,
-                  text: tab == 'ongoing' ? "Mark as Completed" : "View Summary",
+          if(tab=='cancelled')
+          Text(
+            'Reason for Cancel',
+            style: CommonTextStyles.regular14.copyWith(
+              color: CommonColors.secondary,
+            ),
+          ),
+          if(tab=='cancelled')
+          const SizedBox(height: 4),
+          if(tab=='cancelled')
+          Text( "Due to a change in our personal schedule, we are unable to proceed with the full home painting at this time.", style: CommonTextStyles.medium14),
+          if(tab=='cancelled')
+          const SizedBox(height: 12),
+        if  (tab == 'upcoming' || tab == 'completed')
+               CommonButton(
+                  onTap: ontap,
+                  borderColor: CommonColors.purple,
+                  textColor: CommonColors.purple,
+                  text: tab == 'upcoming' ? "Cancel Booking" : "Rate & Review",
                 )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: CommonButton(
-                        text: 'Reject',
-                        backgroundColor: Colors.transparent,
-                        textColor: CommonColors.purple,
-                        borderColor: CommonColors.purple,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: CommonButton(
-                        backgroundColor: CommonColors.primaryColor,
-                        textColor: CommonColors.white,
 
-                        text: 'Accept',
-                        onTap: onAccept,
-                      ),
-                    ),
-                  ],
-                ),
         ],
       ),
     );
   }
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magical_walls_user/presentation/pages/profile/screens/my_bookings.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
@@ -29,11 +30,10 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> get _widgetOptions => [
     HomeScreen(),
     Categories(),
-    Categories(),
+    MyBookings(),
     ProfileScreen(),
 
-    // EarningsScreen(role: widget.role),
-    // ProfileScreen(role: widget.role),
+
   ];
 
   void _onItemTapped(int index) {

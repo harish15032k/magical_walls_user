@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
+import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 
 import '../../../widgets/common_box.dart';
 import '../../../widgets/common_textfield.dart';
@@ -44,7 +45,7 @@ class _MyBookingsState extends State<MyBookings> {
             ),
             const SizedBox(height: 16),
             Text(
-              'No upcoming jobs yet',
+              'No Bookings yet',
               style: CommonTextStyles.medium20.copyWith(
                 color: CommonColors.black,
               ),
@@ -69,9 +70,12 @@ class _MyBookingsState extends State<MyBookings> {
         final job = jobs[index];
         return GestureDetector(
           onTap: () {
-            Get.to(()=>JobDetailsScreen(job:job),transition: Transition.zoom);
+            Get.to(()=>JobDetailsScreen(job:job,tab:tab),transition: Transition.zoom);
           },
           child: CommonBox(
+            ontap: (){
+           tab=='upcoming'? CommonWidgets.showCancelPopup(context): CommonWidgets.showRatePopup(context);
+            },
             tab: tab,
 
             jobId: job['id'] ?? '',
@@ -80,8 +84,7 @@ class _MyBookingsState extends State<MyBookings> {
             date: job['date'] ?? '',
             timeSlot: job['timeSlot'] ?? '',
             address: job['address'] ?? '',
-            onAccept: () =>Get.to(()=>JobDetailsScreen(job:job,isaccept:true),transition: Transition.zoom),
-            onReject: () => debugPrint("Rejected: ${job['id']}"),
+
           ),
         );
       },
@@ -140,9 +143,9 @@ class _MyBookingsState extends State<MyBookings> {
                     children: [
                       _buildTab("Upcoming", 0),
                       const SizedBox(width: 12),
-                      _buildTab("Ongoing", 1),
+                      _buildTab("Completed", 1),
                       const SizedBox(width: 12),
-                      _buildTab("Completed", 2),
+                      _buildTab("Cancelled", 2),
                     ],
                   ),
                 ),
@@ -152,8 +155,8 @@ class _MyBookingsState extends State<MyBookings> {
                   index: selectedTab,
                   children: [
                     _buildJobList("upcoming"),
-                    _buildJobList("ongoing"),
                     _buildJobList("completed"),
+                    _buildJobList("cancelled"),
                   ],
                 ),
               ),
@@ -167,6 +170,5 @@ class _MyBookingsState extends State<MyBookings> {
       ),
     );
   }
-
 
 }
