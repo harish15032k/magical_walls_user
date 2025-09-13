@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
+import 'package:magical_walls_user/core/utils/preference_service.dart';
+import 'package:magical_walls_user/presentation/pages/Auth/controller/auth_controller.dart';
+import 'package:magical_walls_user/presentation/pages/Home/screens/bottom_bar.dart';
+import 'package:magical_walls_user/presentation/pages/location/screens/location_access.dart';
 
 import 'get_start.dart';
 
@@ -16,11 +20,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool _isLoading = true;
+  final controller = AuthController();
 
   @override
   void initState() {
     super.initState();
-    _loadAppData();
+    controller.onInit();
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      _loadAppData();
+    });
   }
 
   Future<void> _loadAppData() async {
@@ -28,11 +36,33 @@ class _SplashScreenState extends State<SplashScreen> {
       await Future.delayed(const Duration(seconds: 2));
 
       if (mounted) {
-        Get.to(
-          () => const GetStart(),
-          transition: Transition.rightToLeft,
-          duration: const Duration(milliseconds: 500),
-        );
+        if (controller.preferences
+                .getString(PreferenceService.token)
+                ?.isNotEmpty ==
+            true) {
+          if (controller.preferences
+                  .getString(PreferenceService.myLocation)
+                  ?.isNotEmpty ==
+              true) {
+            Get.to(
+              () => const BottomBar(),
+              transition: Transition.rightToLeft,
+              duration: const Duration(milliseconds: 500),
+            );
+          } else {
+            Get.to(
+              () => const LocationAccessScreen(),
+              transition: Transition.rightToLeft,
+              duration: const Duration(milliseconds: 500),
+            );
+          }
+        } else {
+          Get.to(
+            () => const GetStart(),
+            transition: Transition.rightToLeft,
+            duration: const Duration(milliseconds: 500),
+          );
+        }
       }
     } catch (e) {
       debugPrint("Error loading app: $e");
@@ -41,6 +71,12 @@ class _SplashScreenState extends State<SplashScreen> {
         setState(() => _isLoading = false);
       }
     }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override

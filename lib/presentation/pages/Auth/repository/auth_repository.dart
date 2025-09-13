@@ -14,4 +14,12 @@ class AuthRepository {
     );
     return apiResponse;
   }
+
+  Future<BaseResponse> verifyOtpApi(dynamic data) async {
+    final apiResponse = await networkApiService.getPostApiResponse(
+      ApiUrl.verifyCodeApi,
+      data,
+    );
+    return apiResponse;
+  }
 }

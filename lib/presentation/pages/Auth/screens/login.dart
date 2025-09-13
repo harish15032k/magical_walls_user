@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     errorMessage: 'Number Should be 10 digit',
                   );
                 } else {
-                  final bool data = await controller.authLogin(context);
+                  final bool data = await controller.authLogin(context,false);
                   if (data) {
                     Get.to(
                       () => OtpScreen(mobile: controller.mobile.text),

@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/core/utils/utils.dart';
+import 'package:magical_walls_user/presentation/pages/Auth/controller/auth_controller.dart';
 import 'package:magical_walls_user/presentation/pages/Home/screens/bottom_bar.dart';
+import 'package:magical_walls_user/presentation/pages/location/screens/location_access.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 import 'package:pinput/pinput.dart';
 
@@ -18,11 +20,13 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final FocusNode _otpFocus = FocusNode();
+  final controller = AuthController();
 
   @override
   void initState() {
     super.initState();
-
+    controller.onInit();
+    controller.mobile.text = widget.mobile;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FocusScope.of(context).requestFocus(_otpFocus);
     });
@@ -30,6 +34,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   void dispose() {
+    controller.dispose();
     _otpFocus.dispose();
     super.dispose();
   }
@@ -117,24 +122,34 @@ class _OtpScreenState extends State<OtpScreen> {
           SizedBox(height: Get.height * 0.035),
           Column(
             children: [
-              CommonButton(
-                backgroundColor: CommonColors.primaryColor,
-                textColor: CommonColors.white,
-                text: 'Verify OTP',
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                  if (pin.length != 4) {
-                    showCustomSnackBar(
-                      context: context,
-                      errorMessage: "Pin should be 4 digit",
-                    );
-                  } else {
-                    Get.to(
-                      () => BottomBar(),
-                      transition: Transition.rightToLeft,
-                    );
-                  }
-                },
+              Obx(
+                () => CommonButton(
+                  isLoading: controller.isLoading.value,
+                  backgroundColor: CommonColors.primaryColor,
+                  textColor: CommonColors.white,
+                  text: 'Verify OTP',
+                  onTap: () async {
+                    FocusScope.of(context).unfocus();
+                    if (pin.length != 4) {
+                      showCustomSnackBar(
+                        context: context,
+                        errorMessage: "Pin should be 4 digit",
+                      );
+                    } else {
+                      final data = await controller.verifyOtp(
+                        context,
+                        widget.mobile,
+                        pin,
+                      );
+                      if (data) {
+                        Get.to(
+                          () => LocationAccessScreen(),
+                          transition: Transition.rightToLeft,
+                        );
+                      }
+                    }
+                  },
+                ),
               ),
               SizedBox(height: 20),
               Row(
@@ -147,10 +162,27 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                   ),
                   SizedBox(width: 5),
-                  Text(
-                    'Resend OTP',
-                    style: CommonTextStyles.regular14.copyWith(
-                      color: CommonColors.primaryColor,
+                  GestureDetector(
+                    onTap: () async {
+                      final bool data = await controller.authLogin(
+                        context,
+                        true,
+                      );
+                    },
+                    child: Obx(
+                      () => controller.isResendOtp.value
+                          ? SizedBox(width: 14,height: 14,
+                              child: CircularProgressIndicator(
+                                color: CommonColors.primaryColor,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : Text(
+                              'Resend OTP',
+                              style: CommonTextStyles.regular14.copyWith(
+                                color: CommonColors.primaryColor,
+                              ),
+                            ),
                     ),
                   ),
                 ],
