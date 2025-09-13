@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text.dart';
 
@@ -20,8 +19,8 @@ class CommonSearch extends StatelessWidget {
     this.controller,
     this.ontap,
     this.suffixontap,
-    this.readonly=false,
-    this.issuffixneed=false,
+    this.readonly = false,
+    this.issuffixneed = false,
   });
 
   @override
@@ -49,16 +48,19 @@ class CommonSearch extends StatelessWidget {
             color: CommonColors.black,
           ),
         ),
-        suffixIcon: issuffixneed!? Padding(
-          padding: const EdgeInsets.fromLTRB(18.0, 18, 10, 18),
-          child: GestureDetector(onTap: suffixontap,
-            child: Image.asset(
-              'assets/images/close-circle.png',
-              width: 20,
-              color: CommonColors.black,
-            ),
-          ),
-        ):null,
+        suffixIcon: issuffixneed!
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(18.0, 18, 10, 18),
+                child: GestureDetector(
+                  onTap: suffixontap,
+                  child: Image.asset(
+                    'assets/images/close-circle.png',
+                    width: 20,
+                    color: CommonColors.black,
+                  ),
+                ),
+              )
+            : null,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: CommonColors.textFieldGrey),

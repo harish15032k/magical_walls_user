@@ -24,10 +24,7 @@ class NotificationScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    'Notifications',
-                    style: CommonTextStyles.medium20,
-                  ),
+                  Text('Notifications', style: CommonTextStyles.medium20),
                 ],
               ),
               const SizedBox(height: 16),
@@ -58,7 +55,8 @@ class NotificationScreen extends StatelessWidget {
                     _buildNotificationCard(
                       iconPath: 'assets/images/noti.png',
                       title: 'Payment Update',
-                      message: '₹899 has been credited to your account for booking #UC7519.',
+                      message:
+                          '₹899 has been credited to your account for booking #UC7519.',
                       timestamp: 'July 11, 2025 | 10:35 AM',
                     ),
                   ],
@@ -91,23 +89,18 @@ class NotificationScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset(
-                  iconPath,
-                  width: 33,
-                  height: 33,
-                ),
+                Image.asset(iconPath, width: 33, height: 33),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        title,
-                        style: CommonTextStyles.medium18,
-                      ),
+                      Text(title, style: CommonTextStyles.medium18),
                       Text(
                         message,
-                        style: CommonTextStyles.regular14.copyWith(color: CommonColors.secondary),
+                        style: CommonTextStyles.regular14.copyWith(
+                          color: CommonColors.secondary,
+                        ),
                       ),
                     ],
                   ),
@@ -127,13 +120,14 @@ class NotificationScreen extends StatelessWidget {
                           '${parts[0]}: ',
                           style: CommonTextStyles.regular14.copyWith(
                             color: CommonColors.secondary,
-
                           ),
                         ),
                         Expanded(
                           child: Text(
                             parts[1],
-                            style: CommonTextStyles.regular14.copyWith(color: CommonColors.black),
+                            style: CommonTextStyles.regular14.copyWith(
+                              color: CommonColors.black,
+                            ),
                           ),
                         ),
                       ],
@@ -142,10 +136,7 @@ class NotificationScreen extends StatelessWidget {
                 }
                 return Padding(
                   padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    detail,
-                    style: CommonTextStyles.regular14,
-                  ),
+                  child: Text(detail, style: CommonTextStyles.regular14),
                 );
               }),
             ],

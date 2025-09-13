@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_text.dart';
-import '../../../widgets/common_button.dart';
 
 class CompletedJobScreen extends StatefulWidget {
-
-  CompletedJobScreen({super.key, });
+  CompletedJobScreen({super.key});
 
   @override
   State<CompletedJobScreen> createState() => _CompletedJobScreenState();
@@ -24,7 +23,6 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Row(
                   children: [
                     GestureDetector(
@@ -107,7 +105,6 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
                         ),
                         const SizedBox(height: 16),
                         Divider(color: CommonColors.textFieldGrey),
-            
 
                         Text(
                           'Customer Information',
@@ -133,12 +130,8 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
                         ),
                         const SizedBox(height: 16),
                         Divider(color: CommonColors.textFieldGrey),
-            
 
-                        Text(
-                          'Payment Info',
-                          style: CommonTextStyles.medium16,
-                        ),
+                        Text('Payment Info', style: CommonTextStyles.medium16),
                         const SizedBox(height: 12),
                         _twoColumnRow(
                           'Total Amount:',
@@ -147,15 +140,9 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
                           'UPI',
                         ),
                         const SizedBox(height: 12),
-                        _twoColumnRow(
-                          'Payment Status:',
-                          'Paid',
-                          '',
-                          '',
-                        ),
+                        _twoColumnRow('Payment Status:', 'Paid', '', ''),
                         const SizedBox(height: 16),
                         Divider(color: CommonColors.textFieldGrey),
-            
 
                         Text(
                           'Technician Notes',
@@ -168,35 +155,46 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
                         ),
                         Text(
                           'Replaced low gas and tested cooling. Customer satisfied.',
-                          style: CommonTextStyles.regular12.copyWith(color: CommonColors.secondary),
+                          style: CommonTextStyles.regular12.copyWith(
+                            color: CommonColors.secondary,
+                          ),
                         ),
                         const SizedBox(height: 16),
-            
 
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('• Inspect the AC Unit',style: CommonTextStyles.regular14,),
-                            SizedBox(height: 5,),
-                            Text('• Identify Gas Leakage',style: CommonTextStyles.regular14,),
-                            SizedBox(height: 5,),
-                            Text('• Refill Gas Cylinder',style: CommonTextStyles.regular14,),
-                            SizedBox(height: 5,),
+                            Text(
+                              '• Inspect the AC Unit',
+                              style: CommonTextStyles.regular14,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              '• Identify Gas Leakage',
+                              style: CommonTextStyles.regular14,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              '• Refill Gas Cylinder',
+                              style: CommonTextStyles.regular14,
+                            ),
+                            SizedBox(height: 5),
 
-                            Text('• Test Cooling',style: CommonTextStyles.regular14,),
-                            SizedBox(height: 5,),
-                            Text('• Customer Approval',style: CommonTextStyles.regular14,),
-                          ]
+                            Text(
+                              '• Test Cooling',
+                              style: CommonTextStyles.regular14,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              '• Customer Approval',
+                              style: CommonTextStyles.regular14,
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 20),
-            
 
-                        Image.asset(
-                          'assets/images/ac.png',
-                          height: 80,
-                        ),
+                        Image.asset('assets/images/ac.png', height: 80),
                         const SizedBox(height: 16),
-            
 
                         Text(
                           'Customer Rating & Feedback',
@@ -205,11 +203,31 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
                         const SizedBox(height: 12),
                         Row(
                           children: [
-                            const Icon(Icons.star, color: Colors.amber, size: 20),
-                            const Icon(Icons.star, color: Colors.amber, size: 20),
-                            const Icon(Icons.star, color: Colors.amber, size: 20),
-                            const Icon(Icons.star, color: Colors.amber, size: 20),
-                            const Icon(Icons.star, color: Colors.amber, size: 20),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
                             const SizedBox(width: 10),
                             Text('5/5', style: CommonTextStyles.medium20),
                           ],
@@ -217,7 +235,9 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
                         const SizedBox(height: 8),
                         Text(
                           'Quick and professional service. Thank you!',
-                          style: CommonTextStyles.regular14.copyWith(color: CommonColors.secondary),
+                          style: CommonTextStyles.regular14.copyWith(
+                            color: CommonColors.secondary,
+                          ),
                         ),
                       ],
                     ),
@@ -232,11 +252,11 @@ class _CompletedJobScreenState extends State<CompletedJobScreen> {
   }
 
   Widget _twoColumnRow(
-      String leftLabel,
-      String leftValue,
-      String rightLabel,
-      String rightValue,
-      ) {
+    String leftLabel,
+    String leftValue,
+    String rightLabel,
+    String rightValue,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

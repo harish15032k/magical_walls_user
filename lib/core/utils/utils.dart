@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 
 const Duration errorMessageDisplayDuration = Duration(milliseconds: 3000);
+
 Future<void> showCustomSnackBar({
   required BuildContext context,
   required String errorMessage,
-   Color? backgroundColor,
+  Color? backgroundColor,
   Duration delayDuration = errorMessageDisplayDuration,
 }) async {
   var overlayState = Overlay.of(context);
@@ -24,6 +25,7 @@ Future<void> showCustomSnackBar({
 class ErrorMessageOverlayContainer extends StatefulWidget {
   final String errorMessage;
   final Color backgroundColor;
+
   const ErrorMessageOverlayContainer({
     Key? key,
     required this.errorMessage,
@@ -74,9 +76,14 @@ class _ErrorMessageOverlayContainerState
           children: [
             PositionedDirectional(
               start: MediaQuery.of(context).size.width * 0.1,
-              bottom: MediaQuery.of(context).size.height * 0.095 * slideAnimation.value,
+              bottom:
+                  MediaQuery.of(context).size.height *
+                  0.095 *
+                  slideAnimation.value,
               child: Opacity(
-                opacity: slideAnimation.value < 0.0 ? 0.0 : slideAnimation.value,
+                opacity: slideAnimation.value < 0.0
+                    ? 0.0
+                    : slideAnimation.value,
                 child: Material(
                   type: MaterialType.transparency,
                   child: Container(
@@ -102,7 +109,8 @@ class _ErrorMessageOverlayContainerState
               ),
             ),
           ],
-        );;
+        );
+        ;
       },
     );
   }

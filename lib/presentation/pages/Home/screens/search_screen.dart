@@ -1,13 +1,8 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
-import 'package:magical_walls_user/core/constants/app_text.dart';
-import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 import 'package:magical_walls_user/presentation/widgets/common_search.dart';
 
-import '../../../widgets/common_textfield.dart';
 import '../../../widgets/common_widgets.dart';
 
 class Search extends StatefulWidget {
@@ -24,8 +19,6 @@ class _SearchState extends State<Search> {
   final TextEditingController pincode = TextEditingController();
   bool filteropen = false;
   bool suffix = false;
-
-
 
   @override
   Widget build(BuildContext context) {

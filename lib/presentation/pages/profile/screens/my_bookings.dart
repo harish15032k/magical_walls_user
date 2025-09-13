@@ -1,14 +1,10 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
-import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 
 import '../../../widgets/common_box.dart';
-import '../../../widgets/common_textfield.dart';
 import 'order_viewdetails.dart';
 
 class MyBookings extends StatefulWidget {
@@ -19,7 +15,6 @@ class MyBookings extends StatefulWidget {
 }
 
 class _MyBookingsState extends State<MyBookings> {
-
   int selectedTab = 0;
 
   final List<Map<String, String?>> jobs = [
@@ -39,10 +34,7 @@ class _MyBookingsState extends State<MyBookings> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/review_icon.png',
-              width: 100,
-            ),
+            Image.asset('assets/images/review_icon.png', width: 100),
             const SizedBox(height: 16),
             Text(
               'No Bookings yet',
@@ -70,11 +62,16 @@ class _MyBookingsState extends State<MyBookings> {
         final job = jobs[index];
         return GestureDetector(
           onTap: () {
-            Get.to(()=>JobDetailsScreen(job:job,tab:tab),transition: Transition.zoom);
+            Get.to(
+              () => JobDetailsScreen(job: job, tab: tab),
+              transition: Transition.zoom,
+            );
           },
           child: CommonBox(
-            ontap: (){
-           tab=='upcoming'? CommonWidgets.showCancelPopup(context): CommonWidgets.showRatePopup(context);
+            ontap: () {
+              tab == 'upcoming'
+                  ? CommonWidgets.showCancelPopup(context)
+                  : CommonWidgets.showRatePopup(context);
             },
             tab: tab,
 
@@ -84,7 +81,6 @@ class _MyBookingsState extends State<MyBookings> {
             date: job['date'] ?? '',
             timeSlot: job['timeSlot'] ?? '',
             address: job['address'] ?? '',
-
           ),
         );
       },
@@ -102,8 +98,10 @@ class _MyBookingsState extends State<MyBookings> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         decoration: BoxDecoration(
-            color: isSelected ? CommonColors.primaryColor.withAlpha(25) : CommonColors.white,
-            borderRadius: BorderRadius.circular(6)
+          color: isSelected
+              ? CommonColors.primaryColor.withAlpha(25)
+              : CommonColors.white,
+          borderRadius: BorderRadius.circular(6),
         ),
         child: Text(
           title,
@@ -129,26 +127,28 @@ class _MyBookingsState extends State<MyBookings> {
               Text("My Bookings", style: CommonTextStyles.medium20),
               const SizedBox(height: 16),
 
-               Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  padding: const EdgeInsets.fromLTRB(12,6,12,6),
-                  decoration: BoxDecoration(
-                    color: CommonColors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: CommonColors.textFieldGrey,width: 1.5),
-
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildTab("Upcoming", 0),
-                      const SizedBox(width: 12),
-                      _buildTab("Completed", 1),
-                      const SizedBox(width: 12),
-                      _buildTab("Cancelled", 2),
-                    ],
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
+                decoration: BoxDecoration(
+                  color: CommonColors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: CommonColors.textFieldGrey,
+                    width: 1.5,
                   ),
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildTab("Upcoming", 0),
+                    const SizedBox(width: 12),
+                    _buildTab("Completed", 1),
+                    const SizedBox(width: 12),
+                    _buildTab("Cancelled", 2),
+                  ],
+                ),
+              ),
 
               Expanded(
                 child: IndexedStack(
@@ -162,7 +162,6 @@ class _MyBookingsState extends State<MyBookings> {
               ),
               const SizedBox(height: 24),
 
-
               const SizedBox(height: 16),
             ],
           ),
@@ -170,5 +169,4 @@ class _MyBookingsState extends State<MyBookings> {
       ),
     );
   }
-
 }

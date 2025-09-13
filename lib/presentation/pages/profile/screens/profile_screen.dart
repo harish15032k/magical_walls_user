@@ -5,13 +5,10 @@ import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/presentation/pages/profile/screens/my_ratings.dart';
-
-import 'package:magical_walls_user/presentation/pages/profile/screens/profile_edit.dart';
 import 'package:magical_walls_user/presentation/pages/profile/screens/profile_suppport.dart';
 import 'package:magical_walls_user/presentation/pages/profile/screens/settings.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 
-import 'add_address.dart';
 import 'manage_address.dart';
 import 'my_bookings.dart';
 
@@ -47,15 +44,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-
             ClipPath(
               clipper: ProfileClipper(),
-              child: Container(
-                height: 180,
-                color: Colors.grey.shade200,
-              ),
+              child: Container(height: 180, color: Colors.grey.shade200),
             ),
-
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
@@ -64,7 +56,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Text("Profile", style: CommonTextStyles.medium20),
                   const SizedBox(height: 20),
-
 
                   Center(
                     child: Column(
@@ -94,10 +85,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text("Sankarapandian",
-                            style: CommonTextStyles.medium18),
-                        Text("+91 6381946117",
-                            style: CommonTextStyles.regular14),
+                        Text(
+                          "Sankarapandian",
+                          style: CommonTextStyles.medium18,
+                        ),
+                        Text(
+                          "+91 6381946117",
+                          style: CommonTextStyles.regular14,
+                        ),
                       ],
                     ),
                   ),
@@ -107,42 +102,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     iconPath: 'assets/images/calendar.png',
                     title: "My Bookings",
                     onTap: () {
-                      Get.to(() => MyBookings(),
-                          transition: Transition.rightToLeft);
+                      Get.to(
+                        () => MyBookings(),
+                        transition: Transition.rightToLeft,
+                      );
                     },
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/location.png',
                     title: "Manage Address",
                     onTap: () {
-                      Get.to(() => ManageAddress(),
-                          transition: Transition.rightToLeft);
+                      Get.to(
+                        () => ManageAddress(),
+                        transition: Transition.rightToLeft,
+                      );
                     },
-
-
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/star.png',
                     title: "My Ratings",
                     onTap: () {
-                      Get.to(() => MyRatings(),
-                          transition: Transition.rightToLeft);
+                      Get.to(
+                        () => MyRatings(),
+                        transition: Transition.rightToLeft,
+                      );
                     },
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/setting-2.png',
                     title: "Settings",
                     onTap: () {
-                      Get.to(() => SettingsScreen(),
-                          transition: Transition.rightToLeft);
+                      Get.to(
+                        () => SettingsScreen(),
+                        transition: Transition.rightToLeft,
+                      );
                     },
                   ),
                   _buildMenuItem(
                     iconPath: 'assets/images/head.png',
                     title: "Help & Support",
                     onTap: () {
-                      Get.to(() => HelpAndSupportScreen(),
-                          transition: Transition.rightToLeft);
+                      Get.to(
+                        () => HelpAndSupportScreen(),
+                        transition: Transition.rightToLeft,
+                      );
                     },
                   ),
                 ],
@@ -153,7 +156,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
 
   Widget _buildMenuItem({
     required String iconPath,
@@ -185,8 +187,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-
-
   void _showLogoutPopup(BuildContext context) {
     showDialog(
       context: context,
@@ -204,9 +204,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
                 const SizedBox(height: 10),
-                Image.asset('assets/images/logout.png',width: 35,),
+                Image.asset('assets/images/logout.png', width: 35),
                 const SizedBox(height: 7),
                 Text(
                   "Are you sure you want to logout?",
@@ -221,13 +220,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: 100,
                       height: 55,
                       text: "Cancel",
-                    borderColor: CommonColors.purple,
+                      borderColor: CommonColors.purple,
                       textColor: CommonColors.purple,
                       onTap: () {
                         Navigator.of(context).pop();
                       },
                     ),
-                    SizedBox(width: 15,),
+                    SizedBox(width: 15),
                     CommonButton(
                       width: 100,
                       height: 55,
@@ -235,9 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       backgroundColor: CommonColors.primaryColor,
                       textColor: CommonColors.white,
                       onTap: () {
-
                         Navigator.of(context).pop();
-
                       },
                     ),
                   ],
@@ -250,16 +247,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
 class ProfileClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
     path.lineTo(0, size.height - 40);
 
-
     path.quadraticBezierTo(
-      size.width / 2, size.height,
-      size.width, size.height - 40,
+      size.width / 2,
+      size.height,
+      size.width,
+      size.height - 40,
     );
 
     path.lineTo(size.width, 0);

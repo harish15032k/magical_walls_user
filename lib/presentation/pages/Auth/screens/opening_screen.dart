@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 
 import 'get_start.dart';
-import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -52,7 +50,6 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           Spacer(),
           Center(
             child: Image.asset(
@@ -64,11 +61,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
           Spacer(),
           if (_isLoading) ...[
-             Text(
-              "Loading",
-              style:CommonTextStyles.regular12,
-            ),
-             SizedBox(height:Get.height*0.01 ),
+            Text("Loading", style: CommonTextStyles.regular12),
+            SizedBox(height: Get.height * 0.01),
             SizedBox(
               width: 100,
               child: LinearProgressIndicator(
@@ -77,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ],
-           SizedBox(height: Get.height*0.06),
+          SizedBox(height: Get.height * 0.06),
         ],
       ),
     );

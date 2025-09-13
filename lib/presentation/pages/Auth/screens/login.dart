@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/core/utils/utils.dart';
+import 'package:magical_walls_user/presentation/pages/Auth/controller/auth_controller.dart';
 import 'package:magical_walls_user/presentation/pages/Auth/screens/otp_screen.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
 import 'package:magical_walls_user/presentation/widgets/common_textfield.dart';
@@ -16,7 +16,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController mobile = TextEditingController();
+  final controller = AuthController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.onInit();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,28 +58,37 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(height: Get.height * 0.04),
           CommonTextField(
             maxLength: 10,
-
-            controller: mobile,
+            controller: controller.mobile,
             label: 'Mobile Number',
             hintText: 'Enter your mobile number',
             isRequired: true,
             keyboardType: TextInputType.phone,
           ),
           SizedBox(height: Get.height * 0.035),
-          CommonButton(
-            backgroundColor: CommonColors.primaryColor,textColor: CommonColors.white,
-            text: 'Get OTP',
-            onTap: () {
-              FocusScope.of(context).unfocus();
-
-              if(mobile.text.length != 10){
-                showCustomSnackBar(context: context, errorMessage: 'Number Should be 10 digit',  );
-              }else{
-              Get.to(
-                () => OtpScreen(mobile: mobile.text),
-                transition: Transition.rightToLeft,
-              );}
-            },
+          Obx(
+            () => CommonButton(
+              backgroundColor: CommonColors.primaryColor,
+              textColor: CommonColors.white,
+              text: 'Get OTP',
+              onTap: () async {
+                FocusScope.of(context).unfocus();
+                if (controller.mobile.text.length != 10) {
+                  showCustomSnackBar(
+                    context: context,
+                    errorMessage: 'Number Should be 10 digit',
+                  );
+                } else {
+                  final bool data = await controller.authLogin(context);
+                  if (data) {
+                    Get.to(
+                      () => OtpScreen(mobile: controller.mobile.text),
+                      transition: Transition.rightToLeft,
+                    );
+                  }
+                }
+              },
+              isLoading: controller.isLoading.value,
+            ),
           ),
         ],
       ),

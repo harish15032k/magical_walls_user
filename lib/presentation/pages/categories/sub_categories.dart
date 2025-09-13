@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/presentation/pages/categories/view_detail.dart';
-import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
+import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
+
 import '../../../core/constants/app_text.dart';
 
 class SubCategories extends StatelessWidget {
@@ -16,8 +17,7 @@ class SubCategories extends StatelessWidget {
     return Scaffold(
       backgroundColor: CommonColors.white,
       bottomNavigationBar: Container(
-        
-        padding: EdgeInsets.fromLTRB(25,0,25,10),
+        padding: EdgeInsets.fromLTRB(25, 0, 25, 10),
         height: 75,
         color: CommonColors.grey.withAlpha(8),
         child: Row(
@@ -56,8 +56,11 @@ class SubCategories extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final data = CommonWidgets.popularServices[index];
                   return GestureDetector(
-                    onTap: (){
-                      Get.to(SubCategoriesViewDetail(),transition: Transition.zoom);
+                    onTap: () {
+                      Get.to(
+                        SubCategoriesViewDetail(),
+                        transition: Transition.zoom,
+                      );
                     },
                     child: CommonWidgets.PopularBox(
                       image: data["image"]!,

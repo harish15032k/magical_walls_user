@@ -6,8 +6,6 @@ import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
 
 import '../../../core/constants/app_text.dart';
 
-
-
 class Categories extends StatelessWidget {
   Categories({super.key});
 
@@ -23,8 +21,6 @@ class Categories extends StatelessWidget {
     {'image': 'assets/images/service_man.png', 'name': 'Plumbing'},
     {'image': 'assets/images/service_man.png', 'name': 'Painting'},
     {'image': 'assets/images/service_man.png', 'name': 'Electrician'},
-
-
   ];
 
   @override
@@ -40,7 +36,7 @@ class Categories extends StatelessWidget {
               color: CommonColors.black,
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 20),
           GridView.builder(
             itemCount: serviceList.length,
             shrinkWrap: true,
@@ -54,8 +50,11 @@ class Categories extends StatelessWidget {
             itemBuilder: (context, index) {
               final data = serviceList[index];
               return CommonWidgets.serviceBox(
-                onTap: (){
-                  Get.to(()=>SubCategories(name:data['name']!),transition: Transition.zoom);
+                onTap: () {
+                  Get.to(
+                    () => SubCategories(name: data['name']!),
+                    transition: Transition.zoom,
+                  );
                 },
                 width: 142,
                 image: data['image']!,

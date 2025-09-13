@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
@@ -21,11 +19,12 @@ class _ProfileEditState extends State<ProfileEdit> {
   final TextEditingController name = TextEditingController();
   final TextEditingController mobile = TextEditingController();
   final TextEditingController Address = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CommonColors.white,
-      bottomNavigationBar:  Padding(
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.only(
           left: 18,
           right: 18,
@@ -33,7 +32,7 @@ class _ProfileEditState extends State<ProfileEdit> {
         ),
         child: CommonButton(
           text: "Save Changes",
-        backgroundColor: CommonColors.primaryColor,
+          backgroundColor: CommonColors.primaryColor,
           textColor: CommonColors.white,
 
           onTap: () {},
@@ -46,15 +45,17 @@ class _ProfileEditState extends State<ProfileEdit> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-
-                children: [  GestureDetector(
-                  onTap: () => Get.back(),
-                  child: Image.asset(
-                    'assets/images/arrow-left.png',
-                    width: 25,
+                children: [
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Image.asset(
+                      'assets/images/arrow-left.png',
+                      width: 25,
+                    ),
                   ),
-                ),
-                  const SizedBox(width: 8), Text("Edit Profile", style: CommonTextStyles.medium20)],
+                  const SizedBox(width: 8),
+                  Text("Edit Profile", style: CommonTextStyles.medium20),
+                ],
               ),
               const SizedBox(height: 16),
               Row(
@@ -71,9 +72,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                       ),
                     ),
                   ),
-
-
-
                 ],
               ),
               const SizedBox(height: 24),
@@ -144,7 +142,6 @@ class _ProfileEditState extends State<ProfileEdit> {
                 isRequired: true,
               ),
 
-
               const SizedBox(height: 16),
             ],
           ),
@@ -152,6 +149,4 @@ class _ProfileEditState extends State<ProfileEdit> {
       ),
     );
   }
-
-
 }

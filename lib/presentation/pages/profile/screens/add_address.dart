@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
@@ -10,30 +8,31 @@ import '../../../widgets/common_textfield.dart';
 
 class AddAddress extends StatefulWidget {
   final String? page;
-  const AddAddress({super.key,  this.page});
+
+  const AddAddress({super.key, this.page});
 
   @override
   State<AddAddress> createState() => _AddAddressState();
 }
 
 class _AddAddressState extends State<AddAddress> {
-
-bool isTermsAccepted =false;
+  bool isTermsAccepted = false;
   final TextEditingController address = TextEditingController();
   final TextEditingController city = TextEditingController();
   final TextEditingController pincode = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CommonColors.white,
-      bottomNavigationBar:  Padding(
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.only(
           left: 18,
           right: 18,
           bottom: MediaQuery.of(context).viewInsets.bottom + 40,
         ),
         child: CommonButton(
-          text: widget.page=='add'?"Save Address":'Save Changes',
+          text: widget.page == 'add' ? "Save Address" : 'Save Changes',
           backgroundColor: CommonColors.primaryColor,
           textColor: CommonColors.white,
 
@@ -47,15 +46,20 @@ bool isTermsAccepted =false;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-
-                children: [  GestureDetector(
-                  onTap: () => Get.back(),
-                  child: Image.asset(
-                    'assets/images/arrow-left.png',
-                    width: 25,
+                children: [
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Image.asset(
+                      'assets/images/arrow-left.png',
+                      width: 25,
+                    ),
                   ),
-                ),
-                  const SizedBox(width: 8), Text(widget.page=='add'?"Add New Address":"Edit Address", style: CommonTextStyles.medium20)],
+                  const SizedBox(width: 8),
+                  Text(
+                    widget.page == 'add' ? "Add New Address" : "Edit Address",
+                    style: CommonTextStyles.medium20,
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
 
@@ -84,15 +88,11 @@ bool isTermsAccepted =false;
                 isRequired: true,
               ),
 
-
               const SizedBox(height: 16),
               Row(
                 children: [
                   Checkbox(
-                    side:  BorderSide(
-                      color:CommonColors.grey ,
-                      width: 1,
-                    ),
+                    side: BorderSide(color: CommonColors.grey, width: 1),
                     hoverColor: CommonColors.primaryColor,
                     activeColor: CommonColors.primaryColor,
                     checkColor: CommonColors.white,
@@ -114,7 +114,6 @@ bool isTermsAccepted =false;
                         "Make this my default address",
                         style: CommonTextStyles.regular16.copyWith(
                           color: CommonColors.black,
-
                         ),
                       ),
                     ),
@@ -127,6 +126,4 @@ bool isTermsAccepted =false;
       ),
     );
   }
-
-
 }

@@ -1,18 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/core/utils/utils.dart';
-
 import 'package:magical_walls_user/presentation/pages/Home/screens/bottom_bar.dart';
-import 'package:magical_walls_user/presentation/pages/Home/screens/home_screen.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
-
 import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {
   final String mobile;
+
   const OtpScreen({super.key, required this.mobile});
 
   @override
@@ -36,7 +33,9 @@ class _OtpScreenState extends State<OtpScreen> {
     _otpFocus.dispose();
     super.dispose();
   }
+
   String pin = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,13 +56,12 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
           SizedBox(height: Get.height * 0.012),
           Text(
-            'Enter the OTP sent to +91xxxxxxxx${widget.mobile.substring(8,10)}',
+            'Enter the OTP sent to +91xxxxxxxx${widget.mobile.substring(8, 10)}',
             style: CommonTextStyles.regular14.copyWith(
               color: CommonColors.grey,
             ),
           ),
           SizedBox(height: Get.height * 0.04),
-
 
           Pinput(
             focusNode: _otpFocus,
@@ -93,10 +91,7 @@ class _OtpScreenState extends State<OtpScreen> {
               decoration: BoxDecoration(
                 color: CommonColors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: CommonColors.pinFieldColor,
-                  width: 1,
-                ),
+                border: Border.all(color: CommonColors.pinFieldColor, width: 1),
               ),
             ),
             submittedPinTheme: PinTheme(
@@ -108,10 +103,7 @@ class _OtpScreenState extends State<OtpScreen> {
               decoration: BoxDecoration(
                 color: CommonColors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: CommonColors.pinFieldColor,
-                  width: 1,
-                ),
+                border: Border.all(color: CommonColors.pinFieldColor, width: 1),
               ),
             ),
             onChanged: (value) {
@@ -125,23 +117,42 @@ class _OtpScreenState extends State<OtpScreen> {
           SizedBox(height: Get.height * 0.035),
           Column(
             children: [
-              CommonButton(backgroundColor: CommonColors.primaryColor,textColor: CommonColors.white, text: 'Verify OTP',onTap: (){
-                FocusScope.of(context).unfocus();
-                if(pin.length!=4){
-                  showCustomSnackBar(context: context, errorMessage: "Pin should be 4 digit");
-                }
-                else{
-                  Get.to(()=>BottomBar(),transition: Transition.rightToLeft);
-                }
-              },),
-              SizedBox(height: 20,),
+              CommonButton(
+                backgroundColor: CommonColors.primaryColor,
+                textColor: CommonColors.white,
+                text: 'Verify OTP',
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  if (pin.length != 4) {
+                    showCustomSnackBar(
+                      context: context,
+                      errorMessage: "Pin should be 4 digit",
+                    );
+                  } else {
+                    Get.to(
+                      () => BottomBar(),
+                      transition: Transition.rightToLeft,
+                    );
+                  }
+                },
+              ),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Didn’t receive the code?',style: CommonTextStyles.regular14.copyWith(color: CommonColors.black),),
-                  SizedBox(width: 5,),
-                  Text('Resend OTP',style: CommonTextStyles.regular14.copyWith(color: CommonColors.primaryColor),),
-
+                  Text(
+                    'Didn’t receive the code?',
+                    style: CommonTextStyles.regular14.copyWith(
+                      color: CommonColors.black,
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    'Resend OTP',
+                    style: CommonTextStyles.regular14.copyWith(
+                      color: CommonColors.primaryColor,
+                    ),
+                  ),
                 ],
               ),
             ],

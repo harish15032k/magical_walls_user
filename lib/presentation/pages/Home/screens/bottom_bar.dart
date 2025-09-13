@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:magical_walls_user/presentation/pages/profile/screens/my_bookings.dart';
 
 import '../../../../core/constants/app_colors.dart';
-
 import '../../categories/categories.dart';
 import '../../profile/screens/profile_screen.dart';
 import 'home_screen.dart';
 
 class BottomBar extends StatefulWidget {
-
   final int initialIndex;
   final int tabIndex;
 
-  const BottomBar({super.key,  this.initialIndex = 0, this.tabIndex=0});
+  const BottomBar({super.key, this.initialIndex = 0, this.tabIndex = 0});
 
   @override
   _BottomBarState createState() => _BottomBarState();
@@ -32,8 +30,6 @@ class _BottomBarState extends State<BottomBar> {
     Categories(),
     MyBookings(),
     ProfileScreen(),
-
-
   ];
 
   void _onItemTapped(int index) {
@@ -52,7 +48,10 @@ class _BottomBarState extends State<BottomBar> {
               color: _selectedIndex == index
                   ? CommonColors.primaryColor
                   : Colors.transparent,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8),bottomRight:Radius.circular(8) ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              ),
             ),
             height: 4,
             width: 55,
@@ -69,7 +68,7 @@ class _BottomBarState extends State<BottomBar> {
           ),
         ],
       ),
-      label: _getNavBarLabel(index,),
+      label: _getNavBarLabel(index),
     );
   }
 
@@ -81,7 +80,8 @@ class _BottomBarState extends State<BottomBar> {
         return 'Categories';
       case 2:
         return 'Bookings';
-      case 3: return 'Profile';
+      case 3:
+        return 'Profile';
       default:
         return '';
     }

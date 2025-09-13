@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
+
 import '../../../../core/constants/app_text.dart';
 
 class MyRatings extends StatelessWidget {
@@ -26,10 +27,7 @@ class MyRatings extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    'My Ratings',
-                    style: CommonTextStyles.medium20,
-                  ),
+                  Text('My Ratings', style: CommonTextStyles.medium20),
                 ],
               ),
             ],

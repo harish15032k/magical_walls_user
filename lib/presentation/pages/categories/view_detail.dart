@@ -19,6 +19,7 @@ class SubCategoriesViewDetail extends StatefulWidget {
 class _SubCategoriesViewDetailState extends State<SubCategoriesViewDetail> {
   bool isclicked = false;
   int quantity = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -266,8 +267,11 @@ class _SubCategoriesViewDetailState extends State<SubCategoriesViewDetail> {
                     ),
                   ),
                   CommonButton(
-                    onTap: (){
-                      Get.to(()=>CartScreen(),transition: Transition.rightToLeft);
+                    onTap: () {
+                      Get.to(
+                        () => CartScreen(),
+                        transition: Transition.rightToLeft,
+                      );
                     },
                     width: 230,
                     text: "View Cart",

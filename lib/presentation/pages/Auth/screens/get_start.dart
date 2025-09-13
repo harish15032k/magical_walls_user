@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
+import 'package:magical_walls_user/core/utils/preference_service.dart';
 import 'package:magical_walls_user/presentation/pages/Auth/screens/login.dart';
 import 'package:magical_walls_user/presentation/widgets/common_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetStart extends StatefulWidget {
   const GetStart({super.key});
@@ -14,13 +16,24 @@ class GetStart extends StatefulWidget {
 
 class _GetStartState extends State<GetStart> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(
+        PreferenceService.fcmToken,
+        "fyALI4qITGeXNRcgPAcUZj:APA91bEaZl1DF6P_T3_xTZFMOVTstowzW7AE4EZ9v2Zbo2zPvBhMY5hdrWtsiYg01uUOAIlXH0H18g-QSZovhniAn3SHqcCx692wJbV2Spg6BlwD2WNqD1U",
+      );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CommonColors.white,
       body: ListView(
         padding: EdgeInsets.only(top: 0),
         children: [
-
           SizedBox(height: Get.height * 0.025),
           Image.asset("assets/images/painters.png"),
           SizedBox(height: Get.height * 0.025),

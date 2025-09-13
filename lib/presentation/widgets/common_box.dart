@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 
-import '../pages/Home/screens/view_summary.dart';
 import 'common_button.dart';
 
 class CommonBox extends StatelessWidget {
@@ -63,7 +61,10 @@ class CommonBox extends StatelessWidget {
               ),
 
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6.0,vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 6.0,
+                  vertical: 2,
+                ),
                 child: Text(
                   tab == 'upcoming'
                       ? 'Confirmed'
@@ -126,38 +127,37 @@ class CommonBox extends StatelessWidget {
 
           const SizedBox(height: 8),
           Text(
-           'Address',
+            'Address',
             style: CommonTextStyles.regular14.copyWith(
               color: CommonColors.secondary,
             ),
           ),
           const SizedBox(height: 4),
-          Text( address, style: CommonTextStyles.medium14),
+          Text(address, style: CommonTextStyles.medium14),
           const SizedBox(height: 12),
-          if(tab=='cancelled')
-          Text(
-            'Reason for Cancel',
-            style: CommonTextStyles.regular14.copyWith(
-              color: CommonColors.secondary,
+          if (tab == 'cancelled')
+            Text(
+              'Reason for Cancel',
+              style: CommonTextStyles.regular14.copyWith(
+                color: CommonColors.secondary,
+              ),
             ),
-          ),
-          if(tab=='cancelled')
-          const SizedBox(height: 4),
-          if(tab=='cancelled')
-          Text( "Due to a change in our personal schedule, we are unable to proceed with the full home painting at this time.", style: CommonTextStyles.medium14),
-          if(tab=='cancelled')
-          const SizedBox(height: 12),
-        if  (tab == 'upcoming' || tab == 'completed')
-               CommonButton(
-                  onTap: ontap,
-                  borderColor: CommonColors.purple,
-                  textColor: CommonColors.purple,
-                  text: tab == 'upcoming' ? "Cancel Booking" : "Rate & Review",
-                )
-
+          if (tab == 'cancelled') const SizedBox(height: 4),
+          if (tab == 'cancelled')
+            Text(
+              "Due to a change in our personal schedule, we are unable to proceed with the full home painting at this time.",
+              style: CommonTextStyles.medium14,
+            ),
+          if (tab == 'cancelled') const SizedBox(height: 12),
+          if (tab == 'upcoming' || tab == 'completed')
+            CommonButton(
+              onTap: ontap,
+              borderColor: CommonColors.purple,
+              textColor: CommonColors.purple,
+              text: tab == 'upcoming' ? "Cancel Booking" : "Rate & Review",
+            ),
         ],
       ),
     );
   }
-
 }

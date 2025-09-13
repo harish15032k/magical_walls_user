@@ -54,28 +54,28 @@ class _AadhaarUploadWidgetState extends State<AadhaarUploadWidget> {
             child: Center(
               child: selectedFile == null
                   ? Row(
-                children: [
-                  const SizedBox(width: 12),
-                  Image.asset('assets/images/pdf.png', width: 20),
-                  const SizedBox(width: 12),
-                  Text(
-                    "Click to Upload Aadhaar (PDF only)",
-                    style: CommonTextStyles.regular14,
-                  ),
-                ],
-              )
+                      children: [
+                        const SizedBox(width: 12),
+                        Image.asset('assets/images/pdf.png', width: 20),
+                        const SizedBox(width: 12),
+                        Text(
+                          "Click to Upload Aadhaar (PDF only)",
+                          style: CommonTextStyles.regular14,
+                        ),
+                      ],
+                    )
                   : Row(
-                children: [
-                  const SizedBox(width: 12),
-                  Image.asset('assets/images/pdf.png', width: 20),
-                  const SizedBox(width: 12),
-                  Text(
-                    selectedFile!,
-                    textAlign: TextAlign.center,
-                    style: CommonTextStyles.regular14,
-                  ),
-                ],
-              ),
+                      children: [
+                        const SizedBox(width: 12),
+                        Image.asset('assets/images/pdf.png', width: 20),
+                        const SizedBox(width: 12),
+                        Text(
+                          selectedFile!,
+                          textAlign: TextAlign.center,
+                          style: CommonTextStyles.regular14,
+                        ),
+                      ],
+                    ),
             ),
           ),
           if (selectedFile != null)

@@ -7,7 +7,7 @@ class CommonColors {
   static const Color primaryText = Color(0xFF161616);
   static const Color inactive = Color(0xFF5A5A5A);
   static const Color secondary = Color(0xFF585858);
-  static const Color placeholderText = Color(0xFFB3B3B3); 
+  static const Color placeholderText = Color(0xFFB3B3B3);
   static const Color white = Color(0xFFFFFFFF);
   static const Color grey = Color(0xFF6C7278);
   static const Color textFieldGrey = Color(0xFFE4E4E4);
@@ -18,5 +18,4 @@ class CommonColors {
   static const Color service = Color(0xFFF8F2EF);
   static const Color red = Color(0xFFCE1515);
   static const Color yellow = Color(0xFFFFC107);
-
 }

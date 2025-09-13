@@ -273,6 +273,7 @@ class CommonWidgets {
       },
     );
   }
+
   static Future ShowBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       isScrollControlled: true,
@@ -395,8 +396,14 @@ class CommonWidgets {
                   spacing: 8,
                   runSpacing: 12,
                   children: const [
-                    CommonFilterChip(label: "Most Popular", section: 'popularity'),
-                    CommonFilterChip(label: "High Review Count", section: 'popularity'),
+                    CommonFilterChip(
+                      label: "Most Popular",
+                      section: 'popularity',
+                    ),
+                    CommonFilterChip(
+                      label: "High Review Count",
+                      section: 'popularity',
+                    ),
                   ],
                 ),
                 const SizedBox(height: 24),
@@ -429,6 +436,7 @@ class CommonWidgets {
       },
     );
   }
+
   static final List<Map<String, dynamic>> reviews = const [
     {
       "name": "Priya R",
@@ -526,6 +534,7 @@ class CommonWidgets {
       "text": "False ceiling or custom textures",
     },
   ];
+
   static Widget buildListItem({
     required IconData icon,
     required Color color,
@@ -616,7 +625,7 @@ class CommonWidgets {
     );
   }
 
- static void showCancelPopup(BuildContext context) {
+  static void showCancelPopup(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -635,9 +644,8 @@ class CommonWidgets {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
                     const SizedBox(height: 10),
-                    Image.asset('assets/images/cancel.png',width: 55,),
+                    Image.asset('assets/images/cancel.png', width: 55),
                     const SizedBox(height: 7),
                     Text(
                       "Cancel Booking ?",
@@ -647,11 +655,13 @@ class CommonWidgets {
                     const SizedBox(height: 15),
                     Text(
                       "Are you sure you want to cancel\n this booking?",
-                      style: CommonTextStyles.regular14.copyWith(color: CommonColors.secondary),
+                      style: CommonTextStyles.regular14.copyWith(
+                        color: CommonColors.secondary,
+                      ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 10,),
-                    CommonTextField(hintText: "",label: "Reason for Cancel",),
+                    SizedBox(height: 10),
+                    CommonTextField(hintText: "", label: "Reason for Cancel"),
                     const SizedBox(height: 24),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -662,15 +672,11 @@ class CommonWidgets {
                           backgroundColor: CommonColors.primaryColor,
                           textColor: CommonColors.white,
                           onTap: () {
-
                             Navigator.of(context).pop();
-
                           },
                         ),
-                        SizedBox(height: 15,),
+                        SizedBox(height: 15),
                         CommonButton(
-
-
                           text: "No,Go Back",
                           borderColor: CommonColors.purple,
                           textColor: CommonColors.purple,
@@ -678,23 +684,30 @@ class CommonWidgets {
                             Navigator.of(context).pop();
                           },
                         ),
-
-
                       ],
                     ),
                   ],
                 ),
               ),
-              Positioned(top: 8,right: 8,width: 20, child: InkWell(onTap: (){
-                Get.back();
-              }, child: Image.asset('assets/images/close-circle.png')),)
+              Positioned(
+                top: 8,
+                right: 8,
+                width: 20,
+                child: InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Image.asset('assets/images/close-circle.png'),
+                ),
+              ),
             ],
           ),
         );
       },
     );
   }
- static void showRatePopup(BuildContext context) {
+
+  static void showRatePopup(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -714,7 +727,7 @@ class CommonWidgets {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 15,),
+                    SizedBox(height: 15),
 
                     Text(
                       "Rate & Review",
@@ -723,11 +736,14 @@ class CommonWidgets {
                     ),
                     const SizedBox(height: 15),
                     Container(
-                      padding: const EdgeInsets.fromLTRB(8,0,8,8),
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                       decoration: BoxDecoration(
                         color: CommonColors.white,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: CommonColors.textFieldGrey, width: 1.5),
+                        border: Border.all(
+                          color: CommonColors.textFieldGrey,
+                          width: 1.5,
+                        ),
                       ),
                       child: Column(
                         children: [
@@ -744,10 +760,9 @@ class CommonWidgets {
                               "Full Home Painting",
                               style: CommonTextStyles.regular18.copyWith(
                                 color: CommonColors.black,
-
                               ),
                             ),
-                            leading:  Container(
+                            leading: Container(
                               width: 73,
                               height: 49,
                               decoration: BoxDecoration(
@@ -801,7 +816,6 @@ class CommonWidgets {
                       ),
                     ),
 
-
                     const SizedBox(height: 18),
                     Text(
                       "How was the service?",
@@ -812,9 +826,11 @@ class CommonWidgets {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: List.generate(
                         5,
-                            (index) => Icon(
+                        (index) => Icon(
                           Icons.star,
-                          color: index < 4 ? CommonColors.yellow : Colors.grey.withAlpha(70),
+                          color: index < 4
+                              ? CommonColors.yellow
+                              : Colors.grey.withAlpha(70),
                           size: 24,
                         ),
                       ),
@@ -855,8 +871,8 @@ class CommonWidgets {
       },
     );
   }
-
 }
+
 class CommonFilterChip extends StatelessWidget {
   final String label;
   final String section;
@@ -878,9 +894,7 @@ class CommonFilterChip extends StatelessWidget {
       return ChoiceChip(
         label: Text(
           label,
-          style: CommonTextStyles.regular14.copyWith(
-            color: CommonColors.black,
-          ),
+          style: CommonTextStyles.regular14.copyWith(color: CommonColors.black),
         ),
         selected: selected,
         onSelected: (value) {
@@ -901,7 +915,4 @@ class CommonFilterChip extends StatelessWidget {
       );
     });
   }
-
-
 }
-

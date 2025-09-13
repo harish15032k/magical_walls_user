@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
+
 class SettingsScreen extends StatefulWidget {
-  
-  
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
@@ -31,10 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    'Settings',
-                    style: CommonTextStyles.medium20,
-                  ),
+                  Text('Settings', style: CommonTextStyles.medium20),
                 ],
               ),
               const SizedBox(height: 16),
@@ -45,7 +40,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+
   bool _isAvailable = true;
+
   Widget _buildAvailabilityItem() {
     return GestureDetector(
       onTap: () {
@@ -57,7 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: const EdgeInsets.symmetric(vertical: 3.0),
         child: Row(
           children: [
-SizedBox(width: 12,),
+            SizedBox(width: 12),
             Text("Notification preferences", style: CommonTextStyles.regular16),
             const Spacer(),
             Transform.scale(

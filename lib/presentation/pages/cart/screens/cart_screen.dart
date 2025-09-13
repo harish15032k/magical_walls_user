@@ -17,11 +17,13 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   late final List<String> dates;
+
   @override
   void initState() {
     super.initState();
     dates = _generateNext30Days();
   }
+
   int selectedDateIndex = 0;
   int selectedSlotIndex = 0;
   int selectedTimeIndex = -1;
@@ -102,7 +104,8 @@ class _CartScreenState extends State<CartScreen> {
       spacing: 8,
       runSpacing: 14,
       children: List.generate(slots.length, (index) {
-        bool isSelected = (tab == "Morning" && selectedMorningIndex == index) ||
+        bool isSelected =
+            (tab == "Morning" && selectedMorningIndex == index) ||
             (tab == "Afternoon" && selectedAfternoonIndex == index) ||
             (tab == "Evening" && selectedEveningIndex == index);
 
@@ -121,7 +124,9 @@ class _CartScreenState extends State<CartScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
-              color: isSelected ? CommonColors.primaryColor : CommonColors.white,
+              color: isSelected
+                  ? CommonColors.primaryColor
+                  : CommonColors.white,
               borderRadius: BorderRadius.circular(30),
               border: Border.all(color: CommonColors.textFieldGrey),
             ),
@@ -137,7 +142,6 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,7 +150,6 @@ class _CartScreenState extends State<CartScreen> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           children: [
-
             Row(
               children: [
                 GestureDetector(
@@ -203,7 +206,9 @@ class _CartScreenState extends State<CartScreen> {
             ),
             const SizedBox(height: 12),
             GestureDetector(
-              onTap: () {Get.to(()=> AddAddress(),transition: Transition.rightToLeft);},
+              onTap: () {
+                Get.to(() => AddAddress(), transition: Transition.rightToLeft);
+              },
               child: Text(
                 "Add New Address",
                 style: CommonTextStyles.semiBold14.copyWith(
@@ -211,7 +216,6 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
             ),
-
 
             const SizedBox(height: 18),
             Text("Select Date", style: CommonTextStyles.semiBold16),
@@ -234,15 +238,17 @@ class _CartScreenState extends State<CartScreen> {
                             ? CommonColors.primaryColor.withAlpha(30)
                             : CommonColors.white,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color:isSelected?CommonColors.primaryColor: Colors.transparent),
+                        border: Border.all(
+                          color: isSelected
+                              ? CommonColors.primaryColor
+                              : Colors.transparent,
+                        ),
                       ),
                       child: Center(
                         child: Text(
                           dates[index],
                           style: CommonTextStyles.semiBold14.copyWith(
-                            color:
-                                 CommonColors.secondary
-
+                            color: CommonColors.secondary,
                           ),
                         ),
                       ),
@@ -258,12 +264,14 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(height: 10),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 8),
-              padding: const EdgeInsets.fromLTRB(12,6,12,6),
+              padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
               decoration: BoxDecoration(
                 color: CommonColors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: CommonColors.textFieldGrey,width: 1.5),
-
+                border: Border.all(
+                  color: CommonColors.textFieldGrey,
+                  width: 1.5,
+                ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -284,16 +292,16 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
 
-
-
-
             const SizedBox(height: 20),
             Text("Apply Coupon", style: CommonTextStyles.semiBold16),
             const SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
-                  child:CommonTextField( islableneed: false, hintText: 'Enter Promo Code')
+                  child: CommonTextField(
+                    islableneed: false,
+                    hintText: 'Enter Promo Code',
+                  ),
                 ),
                 const SizedBox(width: 8),
                 CommonButton(
@@ -315,12 +323,10 @@ class _CartScreenState extends State<CartScreen> {
             _buildPriceRow("Discount", "-"),
             _buildPriceRow("Taxes", "₹234"),
 
-            _buildPriceRow("Total Payable", "₹1533",),
-
+            _buildPriceRow("Total Payable", "₹1533"),
           ],
         ),
       ),
-
 
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
@@ -363,7 +369,6 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
-
 
   Widget _buildPriceRow(String title, String value, {bool isBold = false}) {
     return Padding(

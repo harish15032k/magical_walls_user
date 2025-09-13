@@ -34,10 +34,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    "Help & Support",
-                    style: CommonTextStyles.medium20,
-                  ),
+                  Text("Help & Support", style: CommonTextStyles.medium20),
                 ],
               ),
               const SizedBox(height: 16),
@@ -59,15 +56,21 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: CommonColors.textFieldGrey),
+                            borderSide: BorderSide(
+                              color: CommonColors.textFieldGrey,
+                            ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: CommonColors.textFieldGrey),
+                            borderSide: BorderSide(
+                              color: CommonColors.textFieldGrey,
+                            ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: CommonColors.textFieldGrey),
+                            borderSide: BorderSide(
+                              color: CommonColors.textFieldGrey,
+                            ),
                           ),
                         ),
                       ),

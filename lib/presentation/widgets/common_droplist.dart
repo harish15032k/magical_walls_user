@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 
@@ -26,20 +25,18 @@ class CommonSelectionList extends StatelessWidget {
         border: Border.all(color: CommonColors.textFieldGrey),
       ),
       child: ListView.separated(
-
         scrollDirection: Axis.vertical,
-
 
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
-          return ListTile(contentPadding: EdgeInsets.fromLTRB(8, 3, 3, 0), onTap: (){
-            onSelect(item);
-          },  title:  Text(
-            item,
-            style: CommonTextStyles.regular16,
-          ),
-                    );
+          return ListTile(
+            contentPadding: EdgeInsets.fromLTRB(8, 3, 3, 0),
+            onTap: () {
+              onSelect(item);
+            },
+            title: Text(item, style: CommonTextStyles.regular16),
+          );
         },
         separatorBuilder: (context, index) => Divider(
           color: CommonColors.textFieldGrey,

@@ -6,6 +6,7 @@ import 'package:magical_walls_user/core/constants/app_colors.dart';
 import 'package:magical_walls_user/core/constants/app_text.dart';
 import 'package:magical_walls_user/presentation/pages/Home/screens/search_screen.dart';
 import 'package:magical_walls_user/presentation/widgets/common_widgets.dart';
+
 import '../../../widgets/common_search.dart';
 import 'notification_screen.dart';
 
@@ -28,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/images/banner.png',
     'assets/images/banner.png',
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +72,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  GestureDetector( onTap: (){
-                    Get.to(()=> NotificationScreen(),transition: Transition.rightToLeft);
-                  }, child: Image.asset('assets/images/notification.png', width: 25)),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        () => NotificationScreen(),
+                        transition: Transition.rightToLeft,
+                      );
+                    },
+                    child: Image.asset(
+                      'assets/images/notification.png',
+                      width: 25,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 22),
@@ -84,10 +93,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 12),
 
-
-               CommonSearch(hintText: "E.g. AC Repair, Home Painting",readonly: true,ontap: (){
-                 Get.to(()=>Search(),transition: Transition.downToUp);
-               },),
+              CommonSearch(
+                hintText: "E.g. AC Repair, Home Painting",
+                readonly: true,
+                ontap: () {
+                  Get.to(() => Search(), transition: Transition.downToUp);
+                },
+              ),
               SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,25 +150,24 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 25),
               Text('Popular Services', style: CommonTextStyles.medium20),
               SizedBox(height: 15),
-          SizedBox(
-            height: 350,
-            child: ListView.builder(
-              physics: AlwaysScrollableScrollPhysics(),
-              itemCount: CommonWidgets.popularServices.length,
-              itemBuilder: (context, index) {
-                final data = CommonWidgets.popularServices[index];
-                return CommonWidgets.PopularBox(
-                  image: data["image"]!,
-                  title: data["title"]!,
-                  price: data["price"]!,
-                  rating: data["rating"]!,
-                  reviews: data["reviews"]!,
-                );
-              },
-            ),
-          )
-          
-          ],
+              SizedBox(
+                height: 350,
+                child: ListView.builder(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  itemCount: CommonWidgets.popularServices.length,
+                  itemBuilder: (context, index) {
+                    final data = CommonWidgets.popularServices[index];
+                    return CommonWidgets.PopularBox(
+                      image: data["image"]!,
+                      title: data["title"]!,
+                      price: data["price"]!,
+                      rating: data["rating"]!,
+                      reviews: data["reviews"]!,
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),

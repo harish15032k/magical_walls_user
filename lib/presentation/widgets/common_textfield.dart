@@ -15,11 +15,11 @@ class CommonTextField extends StatelessWidget {
   final int? maxLength;
   final bool readonly;
   final VoidCallback? ontap;
-final  bool? islableneed ;
+  final bool? islableneed;
 
-   CommonTextField({
+  CommonTextField({
     super.key,
-     this.label,
+    this.label,
     this.isRequired = false,
     required this.hintText,
     this.controller,
@@ -29,7 +29,7 @@ final  bool? islableneed ;
     this.maxLength,
     this.readonly = false,
     this.ontap,
-    this.islableneed=true
+    this.islableneed = true,
   });
 
   @override
@@ -40,15 +40,14 @@ final  bool? islableneed ;
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if(islableneed!)
-            Text(
-              label!,
-              style: CommonTextStyles.regular16.copyWith(
-                color: CommonColors.secondary,
+            if (islableneed!)
+              Text(
+                label!,
+                style: CommonTextStyles.regular16.copyWith(
+                  color: CommonColors.secondary,
+                ),
               ),
-            ),
             if (isRequired) ...[
-
               const SizedBox(width: 2),
               const Padding(
                 padding: EdgeInsets.only(top: 1),
@@ -57,8 +56,7 @@ final  bool? islableneed ;
             ],
           ],
         ),
-        if(islableneed!)
-        const SizedBox(height: 8),
+        if (islableneed!) const SizedBox(height: 8),
         TextField(
           style: CommonTextStyles.regular16,
           onTap: ontap,
